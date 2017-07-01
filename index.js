@@ -1,4 +1,3 @@
-const tty = require('tty');
 const {generateNewsTitles} = require('./wikinews');
 
 const KEY_C_C = 3;
@@ -51,16 +50,16 @@ class Headliner {
 		this.startTime = null;
 		const words = this.correctCharacters / 5;
 		const minutes = this.totalTime / 1000 / 60;
-		const wpm = (words / minutes).toFixed(3);
+		const wpm = (words / minutes).toFixed(1);
 		const characters = this.correctCharacters + this.missedCharacters;
 		const accuracy = ((this.correctCharacters / characters) * 100).toFixed(1);
-		console.log(`WPM: ${wpm}. Accuracy: ${accuracy}`);
+		console.log(`WPM: ${wpm}. Accuracy: ${accuracy}%`);
 	}
 
 	async newTitle() {
 		this.currentPhrase = null;
-		this.currentPhrase = await this.newsTitles.next().value;
 		this.phraseIndex = 0;
+		this.currentPhrase = await this.newsTitles.next().value;
 		console.log(this.currentPhrase);
 	}
 }

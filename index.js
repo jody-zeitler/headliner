@@ -30,9 +30,9 @@ class Headliner {
 				return;
 			}
 			this.startTime = this.startTime || Date.now();
-			const chr = data.toString();
-			if (chr === this.currentPhrase[this.phraseIndex]) {
-				process.stdout.write(data);
+			const currentCharCode = this.currentPhrase.charCodeAt(this.phraseIndex);
+			if (code === currentCharCode || currentCharCode > 127) {
+				process.stdout.write(this.currentPhrase[this.phraseIndex]);
 				this.correctCharacters++;
 				if (++this.phraseIndex >= this.currentPhrase.length) {
 					process.stdout.write('\n');

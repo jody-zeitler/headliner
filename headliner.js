@@ -85,9 +85,9 @@ class FreeformHeadliner extends Headliner {
 		this.missDebt = 0;
 	}
 
-	async newTitle() {
+	newTitle() {
 		this.missDebt = 0;
-		super.newTitle();
+		return super.newTitle();
 	}
 
 	processStdin(data) {
